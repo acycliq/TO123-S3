@@ -44,7 +44,7 @@ function dapi(cfg) {
         "Dapi": baselayer,
     };
 
-    L.control.layers(baseMaps).addTo(map);
+    L.control.layers(baseMaps, null,{collapsed:false}).addTo(map);
 
     function getGlyphName(gene) {
         if (glyphMap.get(gene)) {
@@ -610,6 +610,7 @@ function dapiChart(config) {
     $('.leaflet-bottom.leaflet-left').hide();
     $('.leaflet-bottom.leaflet-right').hide();
     $('.panelsToggle').hide()
+    $('#webgl').hide(); // Hide the web gl acceelartion e
 
 
 }

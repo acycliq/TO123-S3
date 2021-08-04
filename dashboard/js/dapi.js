@@ -3,6 +3,7 @@ function dapi(cfg) {
 
     var img = cfg.imageSize,
         tiles = cfg.tiles,
+        mCherry = cfg.mCherry,
         roi = cfg.roi;
     // var img = [227951, 262144],
     //     roi = {"x0": 0, "x1": 40000, "y0": 0, "y1": 46000};
@@ -20,12 +21,14 @@ function dapi(cfg) {
         transformation: new L.Transformation(1 / 1024, 0, 1 / 1024, 0),
     });
 
+    var baselayer = L.tileLayer(tiles, { minZoom: 0, maxZoom: 10});
+    var mCherryLayer = L.tileLayer(mCherry, { minZoom: 0, maxZoom: 10});
 
     map = L.map('mymap', {
         crs: L.CRS.MySimple,
         attributionControl: false,
+        layers: [baselayer, mCherryLayer],
     }).setView([img[1], img[0] / 2], 2);
-    L.tileLayer(tiles, { minZoom: 0, maxZoom: 10}).addTo(map);
 
     function getTaxonomy(gene) {
         if (glyphMap.get(gene)) {
@@ -35,6 +38,13 @@ function dapi(cfg) {
         }
         return out
     }
+
+    var baseMaps = {
+    "Dapi": baselayer,
+    "mCherry": mCherryLayer
+    };
+
+    L.control.layers(baseMaps).addTo(map);
 
     function getGlyphName(gene) {
         if (glyphMap.get(gene)) {

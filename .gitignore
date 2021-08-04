@@ -32,4 +32,5 @@ dashboard/img
 /.eggs/
 /build/
 /pciSeq.egg-info/
-/dashboard/data/img/262144px/
+
+/dashboard/data/img/262144px/8/

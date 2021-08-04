@@ -27,8 +27,8 @@ function dapi(cfg) {
     map = L.map('mymap', {
         crs: L.CRS.MySimple,
         attributionControl: false,
-        layers: [baselayer, mCherryLayer],
     }).setView([img[1], img[0] / 2], 2);
+    baselayer.addTo(map);
 
     function getTaxonomy(gene) {
         if (glyphMap.get(gene)) {
@@ -40,8 +40,8 @@ function dapi(cfg) {
     }
 
     var baseMaps = {
-    "Dapi": baselayer,
-    "mCherry": mCherryLayer
+        "mCherry": mCherryLayer,
+        "Dapi": baselayer,
     };
 
     L.control.layers(baseMaps).addTo(map);

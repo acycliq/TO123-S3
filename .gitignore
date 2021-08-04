@@ -33,3 +33,4 @@ dashboard/img
 /build/
 /pciSeq.egg-info/
 
+/dashboard/data/img_misaligned/

@@ -25,10 +25,7 @@ function dapi(cfg) {
         crs: L.CRS.MySimple,
         attributionControl: false,
     }).setView([img[1], img[0] / 2], 2);
-    L.tileLayer(tiles, {
-        minZoom: 0,
-        maxZoom: 10
-    }).addTo(map);
+    L.tileLayer(tiles, { minZoom: 0, maxZoom: 10}).addTo(map);
 
     function getTaxonomy(gene) {
         if (glyphMap.get(gene)) {

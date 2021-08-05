@@ -32,6 +32,7 @@ var cellBoundaries,
     geneOverlays,
     legendWindow,
     legend_added = false, //used to make sure the listener is attached only once
+    geneByClass_added = false,
     pinnedControls = false,
     hiddenControls = false,
     myTreeControl,
@@ -108,7 +109,6 @@ function legendControl() {
     console.log('legend added')
 }
 
-
 function closeLegend() {
     $('#legend').hide();
 
@@ -120,26 +120,24 @@ function closeLegend() {
     }
 }
 
-// function truncateStr(strIn){
-//     var n = 5; //DO NOT CHECK THIS IN. REVERT BACK TO n = 2
-//     return myUtils().fw_stripper(strIn, n);
-// }
-//
-// var shortNames = d3.map(classColorsCodes(), d => truncateStr(d.className))
-//     .keys()
-//     .filter(d => d != "Other")
-//     .sort();
-//
-// shortNames.forEach((d, i) => {
-//     // make some pixiGraphics (aka containers) objects to hold the cell polygons and name them based on their short names
-//     // these are just empty right now, they only have a name
-//     var c = new PIXI.Graphics();
-//     c.name = d;
-//     c.options = [];
-//     c.options.minZoom = 0  // Needed only to fool the layer tree control and prevent an error from being raised
-//     c.options.maxZoom = 10 // Needed only to fool the layer tree control and prevent an error from being raised
-//     cellContainer_array.push(c)
-// });
+
+
+function geneByClassControl() {
+    var legendLink = document.querySelector(`#geneByClass-link`);
+
+    if (!geneByClass_added) {
+        legendLink.addEventListener(`click`, () => {
+            // Opens the page and stores the opened window instance
+            legendWindow = window.open(`./dashboard/geneByClass.html`); // <--- THAT NEEDS TO BE EXPOSED TO THE USER. MOVE I INSIDE config.js MAYBE
+            // legendWindow = window.open('./dashboard/my_datatable.html', '_blank','toolbar=yes');
+
+        });
+    }
+    geneByClass_added = true;
+
+    $('#legend').show()
+    console.log('legend added')
+}
 
 function hidePanels(bool){
     if (bool){

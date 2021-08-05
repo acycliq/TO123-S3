@@ -465,6 +465,9 @@ function dapiChart(config) {
     //... and show the legend button
     legendControl();
 
+    //... and show the gene by class button
+    geneByClassControl();
+
     //... and show the button to hide/show the dapi and the pie/info panels
     $('#hideDapiAndPanels').show();
     console.log('check boxes added');

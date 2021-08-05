@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TO123_S3 Diagnostics</title>
+
+    <!--jquery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="js/lib/css/bootstrap.min.css">
+    <script src="js/lib/js/bootstrap.min.js"></script>
+
+    <!-- keen.io -->
+    <link rel="stylesheet" href="js/lib/css/keen-dashboards.css">
+    <script src="js/lib/js/keen.min.js"></script>
+
+    <!--d3 -->
+    <script src='https://d3js.org/d3.v4.min.js'></script>
+
+    <script src="js/heatmap.js"></script>
+<!--    <script src="heatmap_2.js"></script>-->
+    <link rel="stylesheet" href="css/index.css">
+
+    <style>
+        #div_id {
+            display: flex;
+        }
+
+        #Note {
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        .line {
+            fill: none;
+            stroke: steelblue;
+            stroke-width: 2px;
+        }
+
+        .line {
+            fill: none;
+            stroke: steelblue;
+            stroke-width: 2px;
+        }
+
+        .bar {
+            fill: steelblue;
+        }
+
+    </style>
+
+
+
+</head>
+<body class="application" id="body">
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">TO123_S3 Diagnostics</a>
+            </div>
+        </div><!--/.container-fluid -->
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12" id="confusion_matrix">
+            <div class="chart-wrapper">
+                <div class="chart-title">
+                    1. Avg Gene Counts Grouped by Most Likely Cell Class
+                </div>
+                <div id="div_id">
+                    <div class="chart-stage" id="heat-chart">
+                        <svg width="900" height="1280"></svg>
+                    </div>
+
+                    <div id="Note">
+                        <ul>
+                            <b>How I did this:</b>
+                            <li>For any given cell find
+                                its top class (the class with the highest prob)
+                            </li>
+                            <li>Get any other cell with the
+                                same top class
+                            </li>
+                            <li>Within this subgroup of cells,
+                                find the mean gene counts
+                            </li>
+                            <li>Repeat for a new cell with a new top class</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    d3.json("./data/genes_by_class.json", function (data) {
+        console.log('json parsed!!');
+        renderHeatmap(data);
+
+        // Hide the legend. Not ready yet
+        $('.legendWrapper').hide();
+    })
+
+    // linechart("line_chart_data.json")
+
+</script>
+
+</body>
+</html>

@@ -135,7 +135,7 @@ function geneByClassControl() {
     }
     geneByClass_added = true;
 
-    $('#legend').show()
+    $('#geneByClass').show()
     console.log('legend added')
 }
 
